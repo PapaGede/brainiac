@@ -112,11 +112,9 @@ export class HostDashboardComponent implements OnInit {
     this.currentQuiz.forEach((host: any) => {
       const endPoints = "/quiz/";
       let url ="http://tahoot-backend.herokuapp.com/";
-      let currentUrl = this.router.url;
       host.quiz.forEach((quiz: any) => {
         this.httpClient.delete(url + endPoints + quiz.quiz_id).subscribe(data => {
           console.log(data);
-          this.router.navigate([currentUrl]);
         });
       });
     });
