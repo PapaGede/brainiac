@@ -21,7 +21,9 @@ export class HostDashboardComponent implements OnInit {
   host: Host = new Host();
 
   quiz_number: number = 0;
-  host_data: any;
+  host_data: any[] = [];
+
+
 
   constructor(private router: Router, public dialog: MatDialog,
     private websocketService: WebsocketService, private gamePlayDataSerivce: GamePlayDataService,
@@ -30,8 +32,14 @@ export class HostDashboardComponent implements OnInit {
     )
     {
         this.requestService.getRequest("/gethost").subscribe((data: any) => {
-              this.host_data = data;
+          // tslint:disable-next-line:no-conditional-assignment
+          data.forEach((element: any) => {
+            if (element.quiz.length !== 0){
+
+              this.host_data.push(element);
               this.quiz_number = this.host_data.length;
+            }
+          });
           });
 
     }
@@ -104,9 +112,11 @@ export class HostDashboardComponent implements OnInit {
     this.currentQuiz.forEach((host: any) => {
       const endPoints = "/quiz/";
       let url ="http://tahoot-backend.herokuapp.com/";
+      let currentUrl = this.router.url;
       host.quiz.forEach((quiz: any) => {
         this.httpClient.delete(url + endPoints + quiz.quiz_id).subscribe(data => {
           console.log(data);
+          this.router.navigate([currentUrl]);
         });
       });
     });
