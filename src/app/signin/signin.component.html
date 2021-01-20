@@ -1,0 +1,38 @@
+<head>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+</head>
+<div class="signin-container" [class.right-panel-active] = "slideCheck" id="container">
+	<div class="form-container player-signin-container">
+		<form>
+			<h1>Player Sign in</h1>
+			<div (click)="playerSignInWithGoogle()" class="social-container">
+				<i class="social" class="fab fa-google"></i>
+			</div>
+		</form>
+	</div>
+	
+	<div class="form-container host-signin-container">
+		<form>
+			<h1>Host Sign in</h1>
+			<div (click)="hostSignInWithGoogle()" class="social-container">
+				<i class="social" class="fab fa-google"></i>
+			</div>
+		</form>
+	</div>
+
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Hi there!</h1>
+				<p>Are you a Host?</p>
+				<button class="slide" id="playerButton" (click)="slideTrigger()">Click Here</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, there!</h1>
+				<p>Are you a Player?</p>
+				<button class="slide" id="hostButton" (click)="slideTrigger()">Click Here</button>
+			</div>
+		</div>
+	</div>
+
+</div>

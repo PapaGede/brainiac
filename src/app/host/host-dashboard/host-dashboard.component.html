@@ -1,0 +1,121 @@
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+  <link href='https://fonts.googleapis.com/css?family=Fira Sans' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Exo 2' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Jockey One' rel='stylesheet'>
+
+
+</head>
+
+
+<mat-toolbar class="navigation-bar">
+      <button type="button" mat-icon-button class="menu-icon" (click)="snav.toggle()" (click)="slideTrigger()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span id="Tahoot">Brainiac 💀</span>
+      <span class="spacer"></span>
+      <button class="user-profile" [matMenuTriggerFor]="belowMenu">
+        <i class="fas fa-user fa-1g"></i>
+      </button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <mat-list>
+          <mat-list-item>{{host.host_name}}</mat-list-item>
+        </mat-list>
+        <button (click)="signOut()" mat-menu-item>Logout</button>
+      </mat-menu>
+  </mat-toolbar>
+
+<mat-sidenav-container class="example-sidenav-container">
+          <mat-sidenav class="side-nav" #snav mode = "side">
+            <mat-list>
+              <mat-list-item (click)="questionContentHide()" class="side-nav-menu">
+                Home
+               </mat-list-item>
+               <mat-divider></mat-divider>
+              <mat-list-item (click)="questionContentShow()" class="side-nav-menu">
+                Create Quiz
+              </mat-list-item>
+              <mat-divider></mat-divider>
+               <mat-list-item (click)="showQuizCards()" class="side-nav-menu">
+                 Manage Quizzes
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
+          </mat-sidenav>
+
+          <!-- side bar main content -->
+          <mat-sidenav-content class="main-content" [class.main-content-closed] = "slideCheck">
+
+            <mat-card *ngIf="questioncontenthide" class="quiz-number-card" [class.side-nav-opened] = "slideCheck">
+              <span id="quiz-number">
+                Quiz Number
+              </span>
+
+              <span id="quiz-number-value">
+                {{quiz_number}}
+              </span>
+
+            </mat-card>
+
+            <app-questions *ngIf="questioncontentshow"></app-questions>
+
+            <div *ngIf="quiz_cards">
+              <mat-card class="quiz-card" *ngFor="let data of host_data; let i = index">
+                <mat-card-content *ngFor="let quiz of data.quiz">
+                  <span id="quiz_name">{{quiz.quiz_name}}</span>
+                  <span id="host_name">{{data.host_name}}</span>
+                  <span id="quiz_game_pin">{{quiz.game_pin}}</span>
+                </mat-card-content>
+                <mat-card-actions class="quiz-card-actions">
+                  <button class="view-quiz-button" matTooltip="View Quiz Questions">
+                    <i class="far fa-eye fa-1g"></i>
+                  </button>
+                  <button class="start-quiz-button" (click)="startQuiz(i)" matTooltip="Start Quiz">
+                    <i class="fas fa-play fa-1g"></i>
+                  </button>
+                  <button class="delete-quiz-button"  matTooltip="Delete Quiz">
+                     <i class="fa fa-trash" aria-hidden="true" fa-1g (click)="deletePost(i)"></i>
+                  </button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+
+            <!-- <mat-toolbar *ngIf="questioncontentshow">
+              <mat-toolbar-row>
+                  <button class="back-button" (click)="questionContentHide()">
+                      <i class="fas fa-arrow-left fa-1g"></i>
+                  </button>
+
+                  <button mat-raised-button [mat-dialog-close] cdkFocusInitial class="add-button" (click)="openQuestionsDialog()">Add Question</button>
+
+                  <button mat-raised-button [mat-dialog-close] cdkFocusInitial class="done-button" (click)="Done()" id="questions-button">Done</button>
+              </mat-toolbar-row>
+          </mat-toolbar> -->
+
+          <!-- <div *ngIf="questioncontenthide">
+            <mat-card class="quiz-card">
+              <mat-card-header>
+                <mat-card-title>{{data.quiz.quiz_name}}</mat-card-title>
+                <mat-card-subtitle>{{data.host_name}}</mat-card-subtitle>
+              </mat-card-header>
+
+              <mat-card-actions class="quiz-card-actions">
+                <button class="share-quiz-button" matTooltip="Share Quiz">
+                  <i class="fas fa-share-alt fa-1g"></i>
+                </button>
+                <button class="add-question-button" matTooltip="Add Quiz Questions" (click)="questionContentShow()">
+                  <i class="fas fa-plus fa-1g"></i>
+                </button>
+                <button class="edit-question-button" matTooltip="Edit Quiz Questions">
+                  <i class="far fa-edit fa-1g"></i>
+                </button>
+                <button (click)="startQuiz()" class="start-quiz-button" matTooltip="Start Quiz">
+                  <i class="fas fa-play fa-1g"></i>
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>              -->
+
+          </mat-sidenav-content>
+</mat-sidenav-container>

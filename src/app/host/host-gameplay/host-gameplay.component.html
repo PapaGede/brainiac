@@ -1,0 +1,47 @@
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'>
+</head>
+
+<button mat-raised-button style="left: 50%; top: 50%;" *ngIf="startButton" (click)="sendQuestion()">Start Game</button>
+
+<button id="next-button" *ngIf="nextButton" mat-raised-button (click)="sendQuestion()">Next</button>
+
+<div class="gameplay-container" *ngFor="let question of current_question">
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <span class="spacer"></span>
+            <div>
+                <h1>{{question.question_body}}</h1>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="gameplay">
+        <div class="gameplay-answers">
+            <div class="timer">
+                <p id="timer-count">{{timer}}</p>
+            </div>
+
+            <div class="gameplay-question-answers">
+                    <mat-grid-list cols="2" rowHeight="2:1">
+                        <mat-grid-tile class="answer{{i + 1}}" *ngFor="let answer of question.answer; let i = index">
+                            <div [ngClass]="{
+                                'triangle': i === 0,
+                                'diamond': i === 1,
+                                'circle': i === 2,
+                                'square': i === 3 }">
+        
+                            </div>
+                            <div class="answer_body">
+                                {{answer.answer_body}}
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+            </div>
+
+            <div class="points">
+                <p id="points-count">{{points}}</p>
+            </div>    
+        </div>
+    </div>
+</div>

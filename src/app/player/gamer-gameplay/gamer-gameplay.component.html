@@ -1,0 +1,176 @@
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+</head>
+
+<div *ngIf="gamerDetails" class="body">
+    <div  class="gamer-details">
+        <p style="margin: 0px 0px 0px 20%;">
+            <mat-form-field appearance="outline">
+              <input matInput [(ngModel)]="roomName" placeholder="Enter Game Pin" required>
+            </mat-form-field>
+        </p>
+    
+        <p style="margin: 0px 0px 0px 20%;">
+            <mat-form-field appearance="outline">
+              <input matInput [(ngModel)]="gamerName" placeholder="Enter Nickname" required>
+            </mat-form-field>
+        </p>
+          
+        <button style="margin: 0px 0px 0px 40%;" mat-raised-button (click)="sendGamerName()" id="enter-button">
+            Enter
+        </button>
+    </div>
+</div>
+
+
+<mat-spinner class="spinner" *ngIf="spinnerDisplay"></mat-spinner>
+
+<div *ngIf="gamePlayContent">
+
+    <div style="height: auto; width: auto;">
+        <span class="spacer"></span>
+            <div class="timer">
+                <p id="timer-count">{{timer}}</p>
+            </div>
+    </div>
+
+    <div class="gameplay-container" *ngFor="let question of gamePlayData">
+        <div>
+            {{this.gamerAnswer.gamer_name}}
+        </div>
+
+        <div>
+            {{points}}
+        </div>
+        
+        <div class="gameplay-question-answers">
+            <div class="gameplay-question">
+                <h1>{{question.question_body}}</h1>
+            </div>
+            
+            <div class="gameplay-answers">
+                <mat-grid-list cols="2" rowHeight="2:1">
+                    <mat-grid-tile (click)="choosenAnswer(i)" class="answer{{i + 1}}" *ngFor="let answer of question.answer; let i = index">
+                        <div [ngClass]="{
+                            'triangle': i === 0,
+                            'diamond': i === 1,
+                            'circle': i === 2,
+                            'square': i === 3 }"></div>
+                            
+                            <div class="answer_body">
+                                {{answer.answer_body}}
+                            </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- answer cards -->
+
+<mat-card class="answer-card" *ngIf="correctCard">
+    <mat-card-header class="gamer-name">
+        <span>{{gamerAnswer.gamer_name}}</span>
+    </mat-card-header>
+
+    <mat-card-content class="answer-card-content">
+        <span id="answer-feedback">
+            Correct
+        </span>
+
+        <div class="correct">
+            <i class="fas fa-check fa-8x"></i>
+        </div>
+
+        <mat-card-header style="width: 150px;" class="points">
+            <span id="points-value">
+                + {{pointsGotten}}
+            </span>
+        </mat-card-header>
+
+        <mat-card-header class="total-score">
+            <span id="total-score">Total Score</span>
+            <span id="total-score-point">{{gamerAnswer.points}}</span>
+        </mat-card-header>
+
+    </mat-card-content>
+
+   
+</mat-card>
+
+<mat-card class="answer-card" style="background-color: #E71749;" *ngIf="wrongCard">
+    <mat-card-header class="gamer-name" style="background-color: #C40D3B;">
+        <span>{{gamerAnswer.gamer_name}}</span>
+    </mat-card-header>
+
+    <mat-card-content class="answer-card-content" style="margin: 10% auto;">
+        <span id="answer-feedback">
+            Wrong
+        </span>
+
+        <div class="wrong">
+            <i class="fas fa-times fa-8x"></i>
+        </div>
+
+        <mat-card-header style="width: 150px; background-color: #C40D3B;" class="points">
+            <span id="points-value">
+                - {{pointsGotten}}
+            </span>
+        </mat-card-header>
+
+        <div class="valid-answer">
+            <div>
+                <span>Correct Answer</span>
+            </div>
+            
+            <div style="margin: 5% 0px 0px 0px;">
+                <span>{{correctAnswer}}</span>
+            </div>
+        </div>
+
+        <mat-card-header class="total-score" style="margin: 5% 0px 0px 0px; background-color: #C40D3B;">
+            <span id="total-score">Total Score</span>
+            <span id="total-score-point">{{gamerAnswer.points}}</span>
+        </mat-card-header>
+
+    </mat-card-content>
+
+   
+</mat-card>
+
+<mat-card class="answer-card" style="background-color: #E71749;" *ngIf="timeoutCard">
+    <mat-card-header class="gamer-name" style="background-color: #C40D3B;">
+        <span>{{gamerAnswer.gamer_name}}</span>
+    </mat-card-header>
+
+    <mat-card-content class="answer-card-content" style="margin: 10% auto;">
+        <span id="answer-feedback">
+            Timeout
+        </span>
+
+        <div class="timeout">
+            <i class="fas fa-hourglass-end fa-8x"></i>
+        </div>
+
+        <div class="valid-answer" style="margin: 10% 0px 0px 0px;">
+            <div>
+                <span>Correct Answer</span>
+            </div>
+            
+            <div style="margin: 5% 0px 0px 0px;">
+                <span>{{correctAnswer}}</span>
+            </div>
+        </div>
+
+        <mat-card-header class="total-score" style="background-color: #C40D3B; margin: 20% 0px 0px 0px;">
+            <span id="total-score">Total Score</span>
+            <span id="total-score-point">{{gamerAnswer.points}}</span>
+        </mat-card-header>
+
+    </mat-card-content>
+
+   
+</mat-card>

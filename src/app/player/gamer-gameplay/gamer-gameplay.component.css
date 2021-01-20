@@ -1,0 +1,237 @@
+.body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+	width: 100%;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+.gamer-details {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	padding: 40px;
+	transform: translate(-50%, -50%);
+	background: #f6f5f7;
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0,0,0,.6);
+	border-radius: 10px;
+  }
+  
+
+.gameplay-container {
+    background: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: auto;
+	width: auto;
+	margin: 5% 0px 0px 8%;
+}
+
+.gameplay-question-answers {
+    background-color: #FFFFFF;
+	border-radius: 10px;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	overflow: hidden;
+	position: relative;
+	width: 70%;
+	float: left;
+	height: auto;
+	margin: 0px 0px 0px 15%;
+}
+.gameplay-question {
+    height: 10%;
+    justify-content: center;
+}
+
+.gameplay-question h1 {
+    text-align: center;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 2%;
+} 
+
+/* answer background */
+.answer1 {
+    background-color: #e21b3c;
+}
+
+.answer2 {
+    background-color: #1368ce;
+}
+
+.answer3 {
+    background-color: #d89e00;
+}
+
+.answer4 {
+    background-color: #298f0d;
+}
+
+.answer1:hover, .answer2:hover, .answer3:hover, .answer4:hover {
+    animation-name: hvr-pulse-shrink;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* game shapes */
+.triangle {
+	width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+    border-bottom: 50px solid #FFFFFF;
+}
+
+.diamond {
+    height: 50px;
+    width: 50px;
+    background-color: #FFFFFF;
+    transform: rotate(45deg);
+}
+
+.circle {
+    height: 50px;
+    width: 50px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+}
+
+.square {
+    height: 50px;
+    width: 50px;
+    background-color: #FFFFFF;
+}
+
+.answer_body {
+    margin: 0px 0px 0px 50px;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+/* Pulse Shrink */
+@keyframes hvr-pulse-shrink {
+    to {
+      transform: scale(0.9);
+    }
+  }
+
+  .timer {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	float: left;
+	background-color: #864cbf;
+	text-align: center;
+}
+
+#timer-count {
+	margin: 35% 0px 0px 0px;
+	font-family: 'Alata';
+	font-size: 30px;
+	color: white;
+}
+
+.spacer {
+	flex: 0.5 1 auto;
+}
+
+
+/* answer cards */
+
+.answer-card{
+    max-width: 350px;
+    height: auto;
+    background-color: #65BF39;
+    margin: 10% auto;
+}
+
+.gamer-name {
+    background-color: #56A32F;
+    height: 70px;
+}
+
+.gamer-name span {
+	font-family: 'Lato';
+    font-size: 20px;
+    color: white;
+    margin: 7% 0px 0px 35%;
+}
+.answer-card-content {
+    color: white;
+    margin: 20% auto;
+}
+
+.answer-card-content span {
+    font-family: 'Lato';
+    font-size: 20px;
+}
+.correct, .wrong, .timeout {
+    color: white;
+}
+
+.correct i, .wrong i, .timeout i {
+    margin: 5% 0px 0px 38%;
+}
+
+
+#answer-feedback {
+    margin: 5% 0px 0px 38%;
+}
+
+#points-value {
+    margin: 15% 0px 0px 5%;
+}
+.points {
+    background-color: #56A32F;
+    height: 70px;
+    width: 250px;
+    width: auto;
+    font-family: 'Lato';
+    font-size: 20px;
+    margin: 0% 0px 0px 25%;
+}
+
+.total-score {
+    margin: 18% 0px 0px 0px;
+    background-color: #56A32F;
+    height: 70px;
+}
+
+#total-score {
+    margin: 5% 0px 0px -5%;
+}
+#total-score-point {
+    margin: 5% 0px 0px 30%;
+}
+.valid-answer {
+    text-align: center;
+    margin: 5% 0px 0px 0px;
+}

@@ -1,0 +1,9 @@
+<form>
+  <mat-form-field appearance="outline">
+    <mat-label>Quiz Name</mat-label>
+    <input matInput [(ngModel)]="quiz.quiz_name" name="quiz_name" required>
+</mat-form-field>
+<div>
+  <button mat-raised-button matStepperNext (click)="createQuiz()">Next</button>
+</div>
+</form>

@@ -1,0 +1,138 @@
+<head>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+</head>
+
+<mat-horizontal-stepper linear #stepper>
+    <mat-step [editable]="isEditable">
+        <ng-template matStepLabel>Quiz Name</ng-template>
+        <app-quiz></app-quiz>
+      </mat-step>
+
+      <mat-step [editable]="isEditable" *ngFor="let question of questions; let i = index">
+        <mat-tab-group dynamicHeight>
+            <ng-template matStepLabel>
+                Quiz Question {{i + 1 }}
+              </ng-template>
+            <mat-tab label="Multiple Choice Question">
+                <form class="form-container">
+                    <mat-form-field appearance="outline" class="example-full-width">
+                                <mat-label>Click here to start typing your question</mat-label>
+                                <input matInput name="question_body_{{i}}" [(ngModel)]="question.question_body" type="text" id="question-input" required/>
+                            </mat-form-field>
+                        
+                            <table class="form-table-container" cellspacing = "0">
+                                <tr>
+                                    <td>
+                                        <div class="question-timer-slider">
+                                            <div class="timer">
+                                                    <mat-form-field appearance="outline">
+                                                        <mat-label>Timer</mat-label>
+                                                        <mat-select [(ngModel)]="question.timer" name="timer_{{i}}">
+                                                            <mat-option *ngFor="let timer of timers" [value]="timer.value">
+                                                            {{timer.value}}
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                            </div>
+                        
+                                            <div class="slider">
+                                                <mat-slider color="primary" class="mat-slider" [(ngModel)]="question.points" type="range" step="500" min="500" max="2000" name="points_{{i}}"></mat-slider>
+                                                {{question.points}} pts
+                                            </div>
+                                        </div>
+                                    </td>
+                        
+                                    <td>
+                                        <div class="question-image">
+                                            <button id="image-upload" mat-raised-button>Upload Image</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                        
+                                <tr>
+                                    <td *ngFor="let answer of question.answer; let j = index">
+                                        <mat-form-field class="answers" appearance="outline">
+                                            <input matInput [(ngModel)]="answer.answer_body" type="text" name="answer{{j + 1}}_{{i}}" id="answers" placeholder="Answer {{j + 1}}" required>
+                                        </mat-form-field>
+                                        <mat-radio-button color="primary" (click)="Answer(j)" name="validAnswer" class="radio-button" [(ngModel)]="answer.is_correct"></mat-radio-button>
+                                    </td>
+                        
+                                </tr>
+                        
+                            </table>
+                            </form>
+
+                    </mat-tab>
+
+            <!-- <mat-tab label="True/False">
+                <form class="form-container">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Click here to start typing your question</mat-label>
+                        <input matInput [(ngModel)]="question.question_body" type="text" name="question_body_{{i}}" id="question-input"/>
+                    </mat-form-field>
+            
+                    <table class="form-table-container" cellspacing = "0">
+                        <tr>
+                          <td>
+                            <div class="question-timer-slider">
+                                    <div class="timer">
+                                            <mat-form-field>
+                                                <mat-label>Timer</mat-label>
+                                                <mat-select [(ngModel)]="question.timer" name="timer_{{i}}">
+                                                    <mat-option *ngFor="let timer of timers" [value]="timer.value">
+                                                    {{timer.value}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                    </div>
+                
+                                    <div class="slider">
+                                        <mat-slider color="primary" class="mat-slider" [(ngModel)]="question.points" type="range" step="500" min="1000" max="2000" name="points_{{i}}"></mat-slider>
+                                        {{question.points}} pts
+                                    </div>
+                                </div>
+                            </td>
+                
+                            <td>
+                                <div class="question-image">
+                                    <button id="image-upload" mat-raised-button>Upload Image</button>
+                                </div>
+                            </td>
+                        </tr>
+                
+                        <tr>
+                            <td>
+                                <mat-form-field class="answers">
+                                    <input matInput disabled value="True" [(ngModel)]="answer1.answer_body" type="text" name="answer1" id="answers" placeholder="True" required>
+                                </mat-form-field>
+                                <mat-radio-button color="primary" class="radio-button" name="validAnswer" [(ngModel)]="answer1.is_correct"></mat-radio-button>
+                            </td>
+                
+                            <td>
+                                <mat-form-field class="answers">
+                                    <input matInput disabled value="False" [(ngModel)]="answer2.answer_body" type="text" name="answer2" id="answers" placeholder="False" required>
+                                </mat-form-field>
+                                <mat-radio-button color="primary" class="radio-button" name="validAnswer" [(ngModel)]="answer2.is_correct"></mat-radio-button>
+                            </td>
+                        </tr>
+                
+                    </table>
+                </form>
+            </mat-tab> -->
+        </mat-tab-group>
+                
+        <div class="buttons">
+
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button style="margin-left: 10%;" class="create-button" mat-raised-button (click)="createQuestion()">Create Question</button>
+            <button style="margin-left: 10%;" class="next-button" mat-raised-button matStepperNext>Next Question</button>
+            <button style="margin-left: 10%;" mat-raised-button (click)="removeQuestion(i)" class="delete-button">Delete</button>
+            <button style="margin-left: 10%;" mat-raised-button (click)="Done()" aria-label="Show an example snack-bar">Done</button>
+        </div>
+    </mat-step>
+
+</mat-horizontal-stepper>
+
+    
+
+

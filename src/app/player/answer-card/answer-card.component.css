@@ -1,0 +1,70 @@
+.answer-card{
+    max-width: 350px;
+    height: 500px;
+    background-color: #65BF39;
+    margin: 10% auto;
+}
+
+.gamer-name {
+    background-color: #56A32F;
+    height: 70px;
+}
+
+.gamer-name span {
+    font-family: 'Lato';
+    font-size: 20px;
+    color: white;
+    margin: 7% 0px 0px 35%;
+}
+mat-card-content {
+    color: white;
+    margin: 20% auto;
+}
+
+mat-card-content span {
+    font-size: 20px;
+    font-family: 'Lato';
+}
+.correct, .wrong, .timeout {
+    color: white;
+}
+
+.correct i, .wrong i, .timeout i {
+    margin: 5% 0px 0px 38%;
+}
+
+
+#answer-feedback {
+    margin: 5% 0px 0px 38%;
+}
+
+#points-value {
+    margin: 15% 0px 0px 5%;
+}
+.points {
+    background-color: #56A32F;
+    height: 70px;
+    width: 250px;
+    width: auto;
+    font-size: 25px;
+    font-family: 'Lato';
+    margin: 0% 0px 0px 30%;
+}
+
+.total-score {
+    margin: 18% 0px 0px 0px;
+    background-color: #56A32F;
+    height: 70px;
+}
+
+#total-score {
+    margin: 5% 0px 0px -5%;
+}
+#total-score-point {
+    margin: 5% 0px 0px 30%;
+}
+.valid-answer {
+    text-align: center;
+    font-family: 'Lato';
+    margin: 5% 0px 0px 0px;
+}
